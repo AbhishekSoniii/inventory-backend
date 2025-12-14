@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from extensions import db
-from routes import product_routes   # 👈 THIS
+from routes import product_routes
 import os
 
 app = Flask(__name__)
@@ -16,5 +16,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
 
-# ✅ REGISTER BLUEPRINT
 app.register_blueprint(product_routes)
+
+if __name__ == "__main__":
+    app.run()
