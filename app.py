@@ -19,6 +19,10 @@ else:
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
+@app.route("/test")
+def test():
+    return "TEST OK"
+
 # ---------- HEALTH CHECK ----------
 @app.route("/")
 def home():
