@@ -80,7 +80,7 @@ def return_product(id):
     p.sell_price = None
     p.sell_date = None
     p.sell_to = None
-    p.status = "AVAILABLE"
+    p.status = "IN_STOCK"
     db.session.commit()
     return jsonify({"message": "Product returned"})
 
