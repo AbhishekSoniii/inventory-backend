@@ -66,6 +66,24 @@ def sell_product(id):
     db.session.commit()
     return jsonify({"message": "Product sold"})
 
+# Deleting invalid entries
+@app.route("/products/<int:id>", methods=["DELETE"])
+def delete_product(id):
+    p = Product.query.get_or_404(id)
+    db.session.delete(p)
+    db.session.commit()
+    return jsonify({"message": "Product deleted"})
+# Refund/Return 
+@app.route("/products/<int:id>/return", methods=["PUT"])
+def return_product(id):
+    p = Product.query.get_or_404(id)
+    p.sell_price = None
+    p.sell_date = None
+    p.sell_to = None
+    p.status = "AVAILABLE"
+    db.session.commit()
+    return jsonify({"message": "Product returned"})
+
 # ---------- CREATE TABLES ----------
 with app.app_context():
     db.create_all()
